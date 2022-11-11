@@ -19,7 +19,22 @@ using namespace std;
 
 int shortest_path(int n, vector<vector<int>> adjMatrix)
 {
-    vector<vector<int>> cost(n, vector<int>(n)); 
+    vector<vector<int>> dist(n, vector<int>(n)); 
+
+    for (int u = 0; i < n; i++)
+    {
+        for(int v = 0; j < n; j++)
+        {
+            if(u==v)
+            {
+                dist[u][v] = 0; 
+            }
+            else
+            {
+                dist[u][v] = adjMatrix[u][v]; 
+            }
+        }
+    }
 }
 
 int main()
