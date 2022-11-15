@@ -18,13 +18,31 @@ techniques
 using namespace std; 
 
 //here the memoization is in the storing of the shortest path in the dist vector
-int shortest_path(int n, vector<vector<int>> adjMatrix)
-{
-    vector<vector<int>> dist(n, vector<int>(n)); 
+class graph_solutions {
 
-    for (int u = 0; i < n; i++)
+private:
+    vector<vector<int>> adj_matrix_;
+    int n_; 
+
+public:
+    graph_solutions(vector<vector<int>> adjMatrix);
+    vector<vector<int>> FloydWarshall();
+
+};
+
+graph_solutions::graph_solutions(vector<vector<int>> adjMatrix)
+{
+    adj_matrix_ = adjMatrix;
+    n_ = adj_matrix_.size(); 
+}
+
+vector<vector<int>> graph_solutions::FloydWarshall()
+{
+    vector<vector<int>> dist(n_, vector<int>(n_)); 
+
+    for (int u = 0; u < n_; u++)
     {
-        for(int v = 0; j < n; j++)
+        for(int v = 0; v < n_; v++)
         {
             if(u==v)
             {
@@ -32,16 +50,16 @@ int shortest_path(int n, vector<vector<int>> adjMatrix)
             }
             else
             {
-                dist[u][v] = adjMatrix[u][v]; 
+                dist[u][v] = adj_matrix_[u][v]; 
             }
         }
     }
 
-    for(int k = 0; k < n; k++)
+    for(int k = 0; k < n_; k++)
     {
-        for(int i = 0; i < n; i++)
+        for(int i = 0; i < n_; i++)
         {
-            for(int j = 0; j < n; j++)
+            for(int j = 0; j < n_; j++)
             {
                 if(dist[i][j] > dist[i][k] + dist[k][j])
                 {
@@ -50,6 +68,8 @@ int shortest_path(int n, vector<vector<int>> adjMatrix)
             }
         }
     }
+    
+    return dist; 
 
 }
 
@@ -63,4 +83,5 @@ int main()
         {3, -1, 1, 0}
     };
    
+   graph_solutions solution1(adj_matrix); 
 }
