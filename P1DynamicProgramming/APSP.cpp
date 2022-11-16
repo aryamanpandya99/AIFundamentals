@@ -4,12 +4,12 @@ Using Dynamic programming to find the shortest path between nodes in
 an adjacency matrix 
 
 
-This project (along with most of the others in this repo) are extremely basic problems as a 
-CS and AI techniques refresher as I transition between one advanced class (Computer Vision)
-and another (either NLP or Reinforcement learning)
+This snippet of code, along with most of the others in this repo, is 
+an extremely basic problem as a CS and AI techniques refresher as I transition 
+between one slightly more advanced class (Computer Vision) and another.
 
-The goal is not to learn the algorithms the best, but to re-familiarize myself with certain 
-techniques 
+The goal is not to learn the algorithms the best, but to re-familiarize 
+myself with certain practices 
 */
 
 #include <iostream>
@@ -17,7 +17,6 @@ techniques
 
 using namespace std; 
 
-//here the memoization is in the storing of the shortest path in the dist vector
 class graph_solutions {
 
 private:
@@ -27,6 +26,7 @@ private:
 public:
     graph_solutions(vector<vector<int>> adjMatrix);
     vector<vector<int>> FloydWarshall();
+    void printMatrix(); 
 
 };
 
@@ -35,6 +35,8 @@ graph_solutions::graph_solutions(vector<vector<int>> adjMatrix)
     adj_matrix_ = adjMatrix;
     n_ = adj_matrix_.size(); 
 }
+
+
 
 vector<vector<int>> graph_solutions::FloydWarshall()
 {
@@ -73,15 +75,35 @@ vector<vector<int>> graph_solutions::FloydWarshall()
 
 }
 
+void printMatrix(vector<vector<int>> adjMatrix)
+{
+    int n = adjMatrix.size(); 
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            std::cout<<adjMatrix[i][j]<<" "; 
+        }
+        std::cout<<std::endl; 
+    }
+}
+
 int main()
 {
     vector<vector<int>> adj_matrix
     {
-        {0, -1, -2, 0},
-        {4, 0, 2, 4},
-        {5, 1, 0, 2}, 
-        {3, -1, 1, 0}
+        {0,   5,  10000, 10},
+        {10000,  0,  3,  10000},
+        {10000, 10000, 0,   1},
+        {10000, 10000, 10000, 0}
     };
    
-   graph_solutions solution1(adj_matrix); 
+   graph_solutions solution_fw(adj_matrix); 
+   std::cout<<"Before Optimizing: "<< std::endl; 
+   printMatrix(adj_matrix);
+   
+
+   std::cout<<"After Optimizing: "<< std::endl;
+   std::vector<vector<int>> optimized = solution_fw.FloydWarshall(); 
+   printMatrix(optimized);
 }
