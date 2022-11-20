@@ -5,10 +5,11 @@ a linear regression model in c++
 
 #include <iostream>
 #include <vector>
-#include "matplotlib.h"
+//#include "/home/aryaman.pandya/matplotlib-cpp/matplotlibcpp.h"
+//#include "gnuplot-iostream.h"
 
 using namespace std;
-namespace plt = matplotlibcpp;  
+//namespace plt = matplotlibcpp;  
 
 template<typename T>
 void print_vector(vector<T> const& arr)
@@ -101,35 +102,39 @@ vector<float> mult_scalar_vector(float a, vector<float> vec)
     return solution; 
 }
 
-void plot_data (vector<T> x_data, vector<T>y_data)
+/*void plot_data (vector<T> x_data, vector<T>y_data)
 {
     plt::figure_size(224, 168); 
     plt::plot(x, y); 
     plt::title("Simple x v/s y plot"); 
     plt::xlabel("X"); 
     plt::ylabel("Y"); 
-}
+}*/
 
 void linear_regression(int epochs, float alpha, std::vector<float> x, std::vector<float> y)
 {
-    if(x.size()!=y.size(){})
+    if(x.size()!=y.size())
     {
         cerr << "X and Y have dimensions, correct and try again" << endl; 
         return; 
     }
+
+    //Gnuplot gp; 
     int n = x.size(); 
-    float m_hat = 0, c_hat = 0, coeff = (-2/n); 
-    vector<float> y_hat(n,0), c_hat_vec(n, c_hat), dm(n, 0), dc(n, 0); 
+    float m_hat = 0, c_hat = 0, dm= 0, dc = 0, coeff = (-2/n); 
+    vector<float> y_hat(n,0), c_hat_vec(n, c_hat); 
 
     for(int i = 0; i < epochs; i++)
     {
         y_hat = add_vectors(mult_scalar_vector(m_hat, x), c_hat_vec); //y = m*x + c
-        dm = mult_scalar_vector(coeff, sum_vector(multiply_vectors(x, sub_vectors(y, y_hat)))); 
-        dc = mult_scalar_vector(coeff, sum_vector(sub_vectors(y, y_hat))); 
+        dm = coeff * sum_vector(multiply_vectors(x, sub_vectors(y, y_hat))); 
+        dc = coeff * sum_vector(sub_vectors(y, y_hat)); 
 
-        m_hat = sub_vectors(m_hat, mult_scalar_vector(alpha, dm)); 
-        c_hat = sub_vectors(m_hat, mult_scalar_vector(alpha, dc)); 
+        m_hat = m_hat - (alpha * dm);
+        c_hat = c_hat - (alpha * dc); 
     }
+
+
 }
 
 int main() 
