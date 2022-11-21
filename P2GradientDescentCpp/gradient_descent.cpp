@@ -5,11 +5,11 @@ a linear regression model in c++
 
 #include <iostream>
 #include <vector>
-//#include "/home/aryaman.pandya/matplotlib-cpp/matplotlibcpp.h"
+#include "/home/aryaman.pandya/matplotlib-cpp/matplotlibcpp.h"
 //#include "gnuplot-iostream.h"
 
 using namespace std;
-//namespace plt = matplotlibcpp;  
+namespace plt = matplotlibcpp;  
 
 template<typename T>
 void print_vector(vector<T> const& arr)
@@ -102,14 +102,15 @@ vector<float> mult_scalar_vector(float a, vector<float> vec)
     return solution; 
 }
 
-/*void plot_data (vector<T> x_data, vector<T>y_data)
+template<typename T> 
+void plot_data (vector<T> x_data, vector<T>y_data)
 {
     plt::figure_size(224, 168); 
-    plt::plot(x, y); 
+    plt::plot(x_data, y_data); 
     plt::title("Simple x v/s y plot"); 
     plt::xlabel("X"); 
     plt::ylabel("Y"); 
-}*/
+}
 
 void linear_regression(int epochs, float alpha, std::vector<float> x, std::vector<float> y)
 {
