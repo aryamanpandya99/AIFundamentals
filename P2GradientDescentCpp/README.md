@@ -2,4 +2,4 @@
 
 In this project I wrote linear regression using gradient descent from scratch in c++. 
 
-To compile and run, us the Makefile provided. 
+To compile and run, use the Makefile provided. 
