@@ -141,15 +141,9 @@ void linear_regression(int epochs, float alpha, std::vector<float> x, std::vecto
 int main() 
 {
     //generate data - gotta add noise 
-    int n_data = 1000; 
-    vector<float> m(n_data, 5); 
-    vector<float> c(n_data,1); 
-
-    vector<float> x; 
-    int rand_num;
-    float rand_float;
-
-    vector<float> noise; 
+    int n_data = 1000, rand_num = 0; 
+    float m = 5.0, rand_float = 0; 
+    vector<float> c(n_data,1), x(n_data, 0), y(n_data, 0), noise(n_data, 0); 
     float r;
 
     for (int i = 0; i < n_data; i ++)
@@ -164,11 +158,17 @@ int main()
 
     }
 
+    y = mult_scalar_vector(m, x); 
+    y = add_vectors(y, c); 
+    y = add_vectors(y, noise); 
+
+    plot_data(x, y); 
+    
     /*print_vector(x);
     print_vector(noise);
     print_vector(m);
     */
-    //set hyper parameters 
+
     int epochs = 20; 
     float learning_rate = 0.0001; 
 
