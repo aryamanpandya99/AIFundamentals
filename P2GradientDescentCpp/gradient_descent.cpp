@@ -105,11 +105,7 @@ vector<float> mult_scalar_vector(float a, vector<float> vec)
 template<typename T> 
 void plot_data (vector<T> x_data, vector<T>y_data)
 {
-    plt::figure_size(224, 168); 
-    plt::plot(x_data, y_data); 
-    plt::title("Simple x v/s y plot"); 
-    plt::xlabel("X"); 
-    plt::ylabel("Y"); 
+    return; 
 }
 
 void linear_regression(int epochs, float alpha, std::vector<float> x, std::vector<float> y)
@@ -170,7 +166,9 @@ int main()
     */
 
     int epochs = 20; 
-    float learning_rate = 0.0001; 
+    float lr = 0.0001; 
 
     //call regression model 
+
+    linear_regression(epochs, lr, x, y); 
 }
