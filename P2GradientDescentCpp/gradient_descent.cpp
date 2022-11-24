@@ -48,7 +48,7 @@ vector<float> multiply_vectors(vector<float> a, vector<float> b)
     {
         solution.push_back(a[i]*b[i]); 
     }
-
+    
     return solution; 
 }
 
@@ -93,19 +93,22 @@ vector<float> mult_scalar_vector(float a, vector<float> vec)
 {
     vector<float> solution; 
     int n = vec.size(); 
-    
     for (int i = 0; i < n; i++)
     {
         solution.push_back(a*vec[i]); 
     }
-
     return solution; 
 }
 
 template<typename T> 
 void plot_data (vector<T> x_data, vector<T>y_data)
 {
-    return; 
+    cout << "entered"; 
+    plt::figure_size(224, 168); 
+    plt::plot(x_data, y_data); 
+    plt::title("Simple x v/s y plot"); 
+    plt::xlabel("X"); 
+    plt::ylabel("Y"); 
 }
 
 void linear_regression(int epochs, float alpha, std::vector<float> x, std::vector<float> y)
@@ -131,7 +134,6 @@ void linear_regression(int epochs, float alpha, std::vector<float> x, std::vecto
         c_hat = c_hat - (alpha * dc); 
     }
 
-
 }
 
 int main() 
@@ -146,18 +148,17 @@ int main()
     {
         rand_num = rand() % 100 + 30; 
         rand_float = (float) rand_num; 
-        x.push_back(rand_float); 
+        x[i] = rand_float; 
         
         r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
         r = (r - 0.5) * 10;  
-        noise.push_back(r);
+        noise[i] = r;
 
     }
 
     y = mult_scalar_vector(m, x); 
     y = add_vectors(y, c); 
     y = add_vectors(y, noise); 
-
     plot_data(x, y); 
     
     /*print_vector(x);
