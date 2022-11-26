@@ -1,4 +1,5 @@
 /*
+Aryaman Pandya 
 All-Pairs Shortest Path 
 Using Dynamic programming to find the shortest path between nodes in 
 an adjacency matrix 
@@ -14,32 +15,19 @@ myself with certain practices
 
 #include <iostream>
 #include <vector>
+#include "graph_solutions.hpp"
 
 using namespace std; 
 
-class graph_solutions {
-
-private:
-    vector<vector<int>> adj_matrix_;
-    int n_; 
-
+class FloydWarshall : public graph_solutions {
+    
 public:
-    graph_solutions(vector<vector<int>> adjMatrix);
-    vector<vector<int>> FloydWarshall();
-    void printMatrix(); 
-
+    FloydWarshall(vector<vector<int>> adjMatrix) : graph_solutions(adjMatrix) {}
+    vector<vector<int>> solution_fw(); 
 };
 
-graph_solutions::graph_solutions(vector<vector<int>> adjMatrix)
-{
-    adj_matrix_ = adjMatrix;
-    n_ = adj_matrix_.size(); 
-}
-
-
-
-vector<vector<int>> graph_solutions::FloydWarshall()
-{
+vector<vector<int>> FloydWarshall::solution_fw()
+{ 
     vector<vector<int>> dist(n_, vector<int>(n_)); 
 
     for (int u = 0; u < n_; u++)
@@ -75,18 +63,6 @@ vector<vector<int>> graph_solutions::FloydWarshall()
 
 }
 
-void printMatrix(vector<vector<int>> adjMatrix)
-{
-    int n = adjMatrix.size(); 
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = 0; j < n; j++)
-        {
-            std::cout<<adjMatrix[i][j]<<" "; 
-        }
-        std::cout<<std::endl; 
-    }
-}
 
 int main()
 {
