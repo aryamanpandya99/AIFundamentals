@@ -15,7 +15,6 @@ protected:
     int n_; 
 
 public:
-    graph_solutions(); 
     graph_solutions(vector<vector<int>> adjMatrix);
     void printMatrix(); 
 

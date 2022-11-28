@@ -15,7 +15,7 @@ myself with certain practices
 
 #include <iostream>
 #include <vector>
-#include "graph_solutions.hpp"
+#include "../base/graph_solutions.hpp"
 
 using namespace std; 
 
