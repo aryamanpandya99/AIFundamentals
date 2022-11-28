@@ -74,12 +74,12 @@ int main()
         {10000, 10000, 10000, 0}
     };
    
-   graph_solutions solution_fw(adj_matrix); 
+   FloydWarshall apsp_matrix(adj_matrix); 
    std::cout<<"Before Optimizing: "<< std::endl; 
-   printMatrix(adj_matrix);
+   apsp_matrix.printMatrix();
    
 
    std::cout<<"After Optimizing: "<< std::endl;
-   std::vector<vector<int>> optimized = solution_fw.FloydWarshall(); 
-   printMatrix(optimized);
+   std::vector<vector<int>> optimized = apsp_matrix.solution_fw(); 
+   apsp_matrix.printMatrix();
 }
