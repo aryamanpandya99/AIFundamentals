@@ -4,13 +4,6 @@ All-Pairs Shortest Path
 Using Dynamic programming to find the shortest path between nodes in 
 an adjacency matrix 
 
-
-This snippet of code, along with most of the others in this repo, is 
-an extremely basic problem as a CS and AI techniques refresher as I transition 
-between one slightly more advanced class (Computer Vision) and another.
-
-The goal is not to learn the algorithms the best, but to re-familiarize 
-myself with certain practices 
 */
 
 #include <iostream>
