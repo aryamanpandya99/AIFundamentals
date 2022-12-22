@@ -14,6 +14,12 @@ const int INFIN = 1000000000;
 //Djikstra's Algo implementation 
 int Djikstra::solution_dkstra(int dest)
 {
+    if(dest > n_ || dest < 0)
+    {
+        cout << "Destination out of bounds"; 
+        return INFIN; 
+    }
+
     vector<bool> visited(n_, false); 
     vector<int> shortest_path(n_,INFIN); 
     shortest_path[0] = 0; 
@@ -23,7 +29,7 @@ int Djikstra::solution_dkstra(int dest)
 
     pq.push(make_tuple(0, 0)); 
 
-    while(!visited[dest])
+    while(!visited[dest] || !pq.empty())
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop(); 
@@ -40,5 +46,10 @@ int Djikstra::solution_dkstra(int dest)
         visited[idx] = true; 
     }
 
-    return shortest_path[dest]; 
+    if(visited[dest])
+    {
+        return shortest_path[dest]; 
+    }
+
+    return INFIN; 
 }
