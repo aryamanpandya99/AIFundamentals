@@ -16,5 +16,5 @@ class Djikstra : public graph_solutions {
     
 public:
     Djikstra(vector<vector<int>> adjMatrix) : graph_solutions(adjMatrix) {}
-    vector<vector<int>> solution_dkstra(); 
+    int solution_dkstra(int dist); 
 };
