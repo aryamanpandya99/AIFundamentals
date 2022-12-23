@@ -5,19 +5,8 @@ Using Dynamic programming to find the shortest path between nodes in
 an adjacency matrix 
 
 */
+#include "FloydWarshall.hpp"
 
-#include <iostream>
-#include <vector>
-#include "../base/graph_solutions.hpp"
-
-using namespace std; 
-
-class FloydWarshall : public graph_solutions {
-    
-public:
-    FloydWarshall(vector<vector<int>> adjMatrix) : graph_solutions(adjMatrix) {}
-    vector<vector<int>> solution_fw(); 
-};
 
 vector<vector<int>> FloydWarshall::solution_fw()
 { 
@@ -54,25 +43,4 @@ vector<vector<int>> FloydWarshall::solution_fw()
     
     return dist; 
 
-}
-
-
-int main()
-{
-    vector<vector<int>> adj_matrix
-    {
-        {099,   577,  10000, 10},
-        {8975,  0,  3,  7898},
-        {10000, 10000, 0,   7771},
-        {489, 89755, 9097, 70}
-    };
-   
-   FloydWarshall apsp_matrix(adj_matrix); 
-   std::cout<<"Before Optimizing: "<< std::endl; 
-   apsp_matrix.printMatrix();
-   
-
-   std::cout<<"After Optimizing: "<< std::endl;
-   std::vector<vector<int>> optimized = apsp_matrix.solution_fw(); 
-   apsp_matrix.printMatrix();
 }

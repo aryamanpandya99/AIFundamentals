@@ -29,7 +29,7 @@ int Djikstra::solution_dkstra(int dest)
 
     pq.push(make_tuple(0, 0)); 
 
-    while(!visited[dest] || !pq.empty())
+    while( !visited[dest] && !pq.empty() )
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop(); 

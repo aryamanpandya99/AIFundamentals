@@ -2,6 +2,8 @@
 Aryaman Pandya 
 Base class for graph search implementations 
 */
+#ifndef GRAPH_SOLUTIONS_H_
+#define GRAPH_SOLUTIONS_H_
 
 #include <iostream>
 #include <vector>
@@ -16,6 +18,8 @@ protected:
 
 public:
     graph_solutions(vector<vector<int>> adjMatrix);
-    void printMatrix(); 
+    void printMatrix(vector<vector<int>> matrix); 
 
 };
+
+#endif

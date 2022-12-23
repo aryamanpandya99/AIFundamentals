@@ -15,15 +15,16 @@ graph_solutions::graph_solutions(vector<vector<int>> adjMatrix)
     n_ = adj_matrix_.size(); 
 }
 
-void graph_solutions::printMatrix()
+void graph_solutions::printMatrix(vector<vector<int>> matrix)
 {
-    int n = adj_matrix_.size(); 
+    int n = matrix.size(); 
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < n; j++)
         {
-            std::cout<<adj_matrix_[i][j]<<" "; 
+            std::cout<<matrix[i][j]<<" "; 
         }
         std::cout<<std::endl; 
     }
+    std::cout<<endl; 
 }
