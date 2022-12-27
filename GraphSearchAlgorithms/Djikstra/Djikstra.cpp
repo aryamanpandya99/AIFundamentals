@@ -32,14 +32,15 @@ int Djikstra::solution_dkstra(int dest)
     while( !visited[dest] && !pq.empty() )
     {
         tuple<int,int> tmp = pq.top();  
-        pq.pop(); 
+        pq.pop();
         idx = get<0>(tmp);  
+                
         for(int i = 0; i < n_; i++)
         {
-            if(!visited[i] && adj_matrix_[idx][i] && (shortest_path[i]<shortest_path[idx]+adj_matrix_[idx][i]))
+            if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
             {
                 shortest_path[i] = shortest_path[idx] + adj_matrix_[idx][i]; 
-                pq.push(make_tuple(i, adj_matrix_[idx][i])); 
+                pq.push(make_tuple(i, shortest_path[i])); 
             }
         }
         
