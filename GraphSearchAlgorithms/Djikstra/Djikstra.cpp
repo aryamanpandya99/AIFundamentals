@@ -1,6 +1,11 @@
 /*
+    Aryaman Pandya 
+    Djikstra.cpp 
     Definition of functions required to perform Djikstra's
     search algorithm
+    Typically, Djikstra computes all the shortest paths, but 
+    we're choosing to tweak it so that it stops after finding 
+    the solution we desire. 
 */
 
 #include "Djikstra.hpp"
@@ -34,7 +39,8 @@ int Djikstra::solution_dkstra(int dest)
         tuple<int,int> tmp = pq.top();  
         pq.pop();
         idx = get<0>(tmp);  
-                
+
+        //this loop is slowing down runtime complexity, need to fix         
         for(int i = 0; i < n_; i++)
         {
             if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))

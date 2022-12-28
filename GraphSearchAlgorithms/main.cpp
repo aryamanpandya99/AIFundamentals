@@ -7,6 +7,8 @@
 #include "FloydWarshall/FloydWarshall.hpp"
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <ctime>    
 
 using namespace std; 
 
@@ -20,8 +22,15 @@ void run_fw(vector<vector<int>> adj_matrix)
     apsp_matrix.printMatrix(adj_matrix);
     
     std::cout<<"After Optimizing: "<< std::endl;
+    auto start = std::chrono::system_clock::now();
     std::vector<vector<int>> optimized = apsp_matrix.solution_fw(); 
+    auto end = std::chrono::system_clock::now();
+    
+    std::chrono::duration<double> runtime = end-start;
+    
     apsp_matrix.printMatrix(optimized);
+    std::cout << "Runtime for Dynamic Programming Algorithm: " << runtime.count() << 
+                                                                "s\n"; 
 }
 
 void run_dkstra(vector<vector<int>> adj_matrix)
@@ -33,11 +42,17 @@ void run_dkstra(vector<vector<int>> adj_matrix)
     djikstra_soln.printMatrix(adj_matrix);
 
     cout << "Given destination from source: vertex 2\n";
-    
-    int shortest_path = djikstra_soln.solution_dkstra(2); 
+
+    auto start = std::chrono::system_clock::now();
+    int shortest_path = djikstra_soln.solution_dkstra(3); 
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> runtime = end-start;
 
     if(shortest_path!= INFIN)
     {
+        std::cout << "Runtime for Djikstra's Search Algorithm: " << runtime.count() << 
+                                                                "s\n"; 
         std::cout<<"Shortest path to destination: "<<shortest_path<< endl;
     }
 
@@ -49,14 +64,18 @@ void run_dkstra(vector<vector<int>> adj_matrix)
 
 int main()
 {
+    //declare some adjacency matrix - this will be interactive eventually 
     vector<vector<int>> adj_matrix
     {
-        {0,   577,  10000, 10},
-        {8975,  0,  3,  7898},
-        {10000, 10000, 0,   7771},
-        {489, 89755, 9097, 0}
+        {0,   577,  10000, 10, 56, 0},
+        {8975,  0,  3,  7898, 0, 4353},
+        {10000, 10000, 0,   7771, 2435, 45},
+        {489, 455, 9097, 0, 45242, 356}, 
+        {489, 0, 78, 0, 0, 245}, 
+        {489, 34, 2, 0, 67, 0}, 
     };
 
+    //Calls our search algorithms on our adjacency matrix
     run_fw(adj_matrix); 
     run_dkstra(adj_matrix); 
 
