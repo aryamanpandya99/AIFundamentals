@@ -12,10 +12,11 @@ search algorithm
 
 using namespace std; 
 
-class AStar : public graph_solutions {
+class AStar {
     
 public:
-    AStar(vector<vector<int>> adjMatrix) : graph_solutions(adjMatrix) {}
+    AStar(); 
     int heuristic(int cost); 
     int solution_astar(int dest); 
+
 };

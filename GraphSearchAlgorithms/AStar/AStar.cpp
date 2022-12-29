@@ -17,6 +17,12 @@ using namespace std;
 const int INFIN = 1000000000; 
 
 //A* Algo implementation 
+
+AStar::AStar()
+{
+    
+}
+
 int AStar::solution_astar(int dest)
 {
     if(dest > n_ || dest < 0)

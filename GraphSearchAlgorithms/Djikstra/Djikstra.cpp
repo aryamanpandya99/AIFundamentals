@@ -40,7 +40,7 @@ int Djikstra::solution_dkstra(int dest)
         pq.pop();
         idx = get<0>(tmp);  
 
-        //this loop is slowing down runtime complexity, need to fix         
+        //this loop is slowing down runtime complexity, need to fix by maintaining neighbour list          
         for(int i = 0; i < n_; i++)
         {
             if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
