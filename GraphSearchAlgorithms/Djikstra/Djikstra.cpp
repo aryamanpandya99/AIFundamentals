@@ -38,9 +38,9 @@ int Djikstra::solution_dkstra(int dest)
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop();
-        idx = get<1>(tmp);  
-        cout << "weight: " << get<0>(tmp)<<"\n"; 
+        idx = get<1>(tmp);   
 
+        //this loop is slowing things down since it's iterating over all elements not just ones that are neighbours 
         for(int i = 0; i < n_; i++)
         {
             if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))

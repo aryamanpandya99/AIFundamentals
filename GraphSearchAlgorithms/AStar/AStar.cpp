@@ -47,23 +47,18 @@ int AStar::solution_astar(char src, char dest)
     int idx = idx_src; 
     int current_distance = 0; 
     
-    priority_queue<int> pq; //holds the index of node in adj list 
+    priority_queue<tuple<int, int>, std::vector<tuple<int, int>>, std::greater<tuple<int, int>>> pq; //tuple element 1 will be weight, element 2 will be vertex  
 
-    pq.push(idx); 
+    pq.push(make_tuple(0, idx)); 
 
     while( !visited[dest] && !pq.empty() )
     {
-        int tmp = pq.top(); 
+        tuple<int,int> tmp = pq.top();  
         pq.pop();
-        idx = tmp; 
-
-        for(const auto& unvisited : pq)
-        {
-            
-        }
+        idx = get<1>(tmp); //min
 
         //this loop is slowing down runtime complexity, need to fix by maintaining neighbour list          
-        for(int i = 0; i < n; i++)
+        for(const auto& neighbour : adj_list_[idx].neighbours)
         {
             if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
             {
@@ -109,7 +104,7 @@ void AStar::insert_edge(char src, char dest, int weight)
     }
     tuple<char, int> tmp = make_tuple(dest, weight); 
 
-    adj_list_[idx_src].neighbours.push_back(tmp);
+    adj_list_[idx_src].neighbours.insert()(tmp);
 
 }
 
