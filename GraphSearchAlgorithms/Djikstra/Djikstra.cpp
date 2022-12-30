@@ -30,7 +30,7 @@ int Djikstra::solution_dkstra(int dest)
     shortest_path[0] = 0; 
     int idx = 0; 
     int current_distance = 0; 
-    priority_queue<tuple<int, int>> pq; //tuple element 1 will be vertex, element 2 will be distance  
+    priority_queue<tuple<int, int>, std::vector<tuple<int, int>>, std::greater<tuple<int, int>>> pq; //tuple element 1 will be weight, element 2 will be vertex   
 
     pq.push(make_tuple(0, 0)); 
 
@@ -38,15 +38,15 @@ int Djikstra::solution_dkstra(int dest)
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop();
-        idx = get<0>(tmp);  
+        idx = get<1>(tmp);  
+        cout << "weight: " << get<0>(tmp)<<"\n"; 
 
-        //this loop is slowing down runtime complexity, need to fix by maintaining neighbour list          
         for(int i = 0; i < n_; i++)
         {
             if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
             {
                 shortest_path[i] = shortest_path[idx] + adj_matrix_[idx][i]; 
-                pq.push(make_tuple(i, shortest_path[i])); 
+                pq.push(make_tuple(shortest_path[i], i)); 
             }
         }
         

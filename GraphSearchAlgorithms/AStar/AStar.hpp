@@ -8,6 +8,7 @@ search algorithm
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include "../base/graph_solutions.hpp"
 
 using namespace std; 
@@ -15,14 +16,14 @@ using namespace std;
 struct Node {
     char name; 
     int x, y; 
-    vector<tuple<char,int>> neighbours; //first var stores neigbour name, second stores distance to neighbour
+    vector<map<char, int>> neighbours; //first var stores neigbour name, second stores distance to neighbour
 }; 
 
 class AStar {
     
 public:
     AStar(); 
-    int heuristic(int x0, int y0, int x1, int y1); //most likely euclidean distances 
+    int heuristic(Node& start, Node& goal); //most likely euclidean distances 
     int solution_astar(char src, char dest); 
     int char_to_int(char character); 
     int num_vertices(); 
@@ -30,6 +31,5 @@ public:
 
 private: 
     std::vector<Node> adj_list_; 
-
 
 };

@@ -44,7 +44,7 @@ void run_dkstra(vector<vector<int>> adj_matrix)
     cout << "Given destination from source: vertex 2\n";
 
     auto start = std::chrono::system_clock::now();
-    int shortest_path = djikstra_soln.solution_dkstra(3); 
+    int shortest_path = djikstra_soln.solution_dkstra(5); 
     auto end = std::chrono::system_clock::now();
 
     std::chrono::duration<double> runtime = end-start;

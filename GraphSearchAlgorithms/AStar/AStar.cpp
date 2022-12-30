@@ -26,9 +26,12 @@ AStar::AStar()
 
 int AStar::solution_astar(char src, char dest)
 {
+    int idx_dest = char_to_int(dest); 
+    int idx_src = char_to_int(src); 
+
     int n = num_vertices(); 
     
-    if(dest > n || dest < 0)
+    if(idx_dest > n || idx_dest < 0)
     {
         cout << "Destination out of bounds"; 
         return INFIN; 
@@ -36,18 +39,28 @@ int AStar::solution_astar(char src, char dest)
 
     vector<bool> visited(n, false); 
     vector<int> shortest_path(n,INFIN); 
-    shortest_path[0] = 0; 
-    int idx = 0; 
-    int current_distance = 0; 
-    priority_queue<tuple<int, int>> pq; //tuple element 1 will be vertex, element 2 will be distance  
+    vector<float> future_cost(n, INFIN); 
 
-    pq.push(make_tuple(0, 0)); 
+    shortest_path[idx_src] = 0; 
+    future_cost[idx_src] = heuristic(adj_list_[idx_src], adj_list_[idx_dest]); 
+    
+    int idx = idx_src; 
+    int current_distance = 0; 
+    
+    priority_queue<int> pq; //holds the index of node in adj list 
+
+    pq.push(idx); 
 
     while( !visited[dest] && !pq.empty() )
     {
-        tuple<int,int> tmp = pq.top();  
+        int tmp = pq.top(); 
         pq.pop();
-        idx = get<0>(tmp);  
+        idx = tmp; 
+
+        for(const auto& unvisited : pq)
+        {
+            
+        }
 
         //this loop is slowing down runtime complexity, need to fix by maintaining neighbour list          
         for(int i = 0; i < n; i++)
@@ -70,9 +83,9 @@ int AStar::solution_astar(char src, char dest)
     return INFIN; 
 }
 
-int AStar::heuristic(int x0, int y0, int x1, int y1)
+int AStar::heuristic(Node& start, Node& goal)
 {
-    return sqrt((x1-x0)^2 + (y1-y0)^2);
+    return sqrt((goal.x-start.x)^2 + (goal.y-start.y)^2);
 }
 
 int AStar::num_vertices()
