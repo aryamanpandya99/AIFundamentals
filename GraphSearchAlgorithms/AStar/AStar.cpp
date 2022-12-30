@@ -60,6 +60,11 @@ int AStar::solution_astar(char src, char dest)
         //this loop is slowing down runtime complexity, need to fix by maintaining neighbour list          
         for(const auto& neighbour : adj_list_[idx].neighbours)
         {
+            if(visited[char_to_int(neighbour.first)])
+            {
+                continue; 
+            }
+            
             if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
             {
                 shortest_path[i] = shortest_path[idx] + adj_matrix_[idx][i]; 

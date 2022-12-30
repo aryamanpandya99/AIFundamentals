@@ -38,7 +38,12 @@ int Djikstra::solution_dkstra(int dest)
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop();
-        idx = get<1>(tmp);   
+        idx = get<1>(tmp); 
+
+        if(visited[idx])
+        {
+            continue; 
+        }  
 
         //this loop is slowing things down since it's iterating over all elements not just ones that are neighbours 
         for(int i = 0; i < n_; i++)
