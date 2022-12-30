@@ -110,5 +110,5 @@ void AStar::insert_edge(char src, char dest, int weight)
 
 int AStar::char_to_int(char character)
 {
-
+    return character - 'A'; 
 }
