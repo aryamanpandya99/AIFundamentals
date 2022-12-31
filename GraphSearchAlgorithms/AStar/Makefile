@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS  = -g -Wall
 
-AStar : graph_solutions.o FloydWarshall.o Djikstra.o
+AStar : AStar.o
 	g++ -o gs main.cpp AStar.o
 
 AStar.o : AStar.cpp

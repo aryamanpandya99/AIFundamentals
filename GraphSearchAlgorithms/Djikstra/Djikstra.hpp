@@ -8,14 +8,14 @@ search algorithm
 
 #include <iostream>
 #include <vector>
-#include "../base/graph_solutions.hpp"
+#include "../base/graphList.hpp"
 
 using namespace std; 
 
-class Djikstra : public graph_solutions {
+class Djikstra : public graphList {
     
 public:
-    Djikstra(vector<vector<int>> adjMatrix) : graph_solutions(adjMatrix) {}
+    Djikstra() {}
     int solution_dkstra(int dest); 
 
 };
