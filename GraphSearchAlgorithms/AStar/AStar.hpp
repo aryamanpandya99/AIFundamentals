@@ -1,9 +1,9 @@
 /*
 Aryaman Pandya 
 CS221: AI Principles and Techniques 
-Djikstra's Algorithm  
-Implementation of a slightly faster and better uniform cost 
-search algorithm 
+A* Search 
+Uniform Cost Search with heuristics to 
+estimate future costs 
 */
 
 #include <iostream>
