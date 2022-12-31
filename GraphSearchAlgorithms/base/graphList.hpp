@@ -1,12 +1,10 @@
 /*
 Aryaman Pandya 
-CS221: AI Principles and Techniques 
-Djikstra's Algorithm  
-Implementation of a slightly faster and better uniform cost 
-search algorithm 
+Base class for graph search implementations 
+Adjacency List implementation 
 */
-#ifndef GRAPH_SOLUTIONS_H_
-#define GRAPH_SOLUTIONS_H_
+#ifndef graphMatrix_H_
+#define graphMatrix_H_
 
 #include <iostream>
 #include <vector>
@@ -23,8 +21,8 @@ struct Node {
 class graphList {
     
 public:
-    graphList(); 
-    int char_to_int(char character); 
+    graphList(int num_vertices, int x, int y); 
+    int char_to_index(char character); 
     void insert_edge(char src, char dest, int weight); 
 
 protected: 

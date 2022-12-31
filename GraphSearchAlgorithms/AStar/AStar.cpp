@@ -19,27 +19,22 @@ const int INFIN = 1000000000;
 
 //A* Algo implementation 
 
-AStar::AStar()
-{
-    
-}
 
 int AStar::solution_astar(char src, char dest)
 {
-    int idx_dest = char_to_int(dest); 
-    int idx_src = char_to_int(src); 
+    int idx_dest = char_to_index(dest); 
+    int idx_src = char_to_index(src); 
 
-    int n = num_vertices(); 
     
-    if(idx_dest > n || idx_dest < 0)
+    if(idx_dest > n_ || idx_dest < 0)
     {
         cout << "Destination out of bounds"; 
         return INFIN; 
     }
 
-    vector<bool> visited(n, false); 
-    vector<int> shortest_path(n,INFIN); 
-    vector<float> future_cost(n, INFIN); 
+    vector<bool> visited(n_, false); 
+    vector<int> shortest_path(n_,INFIN); 
+    vector<float> future_cost(n_, INFIN); 
     
 
     shortest_path[idx_src] = 0; 
@@ -61,7 +56,7 @@ int AStar::solution_astar(char src, char dest)
 
         for(const auto& neighbour : adj_list_[idx].neighbours)
         {
-            if(visited[char_to_int(neighbour.first)])
+            if(visited[char_to_index(neighbour.first)])
             {
                 continue; 
             }

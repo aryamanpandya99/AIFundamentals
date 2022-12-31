@@ -15,7 +15,7 @@ using namespace std;
 class Djikstra : public graphList {
     
 public:
-    Djikstra() {}
-    int solution_dkstra(int dest); 
+  Djikstra(int num_vertices, int x, int y);
+  int solution_dkstra(char dest); 
 
 };

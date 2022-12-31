@@ -17,9 +17,11 @@ using namespace std;
 const int INFIN = 1000000000; 
 
 //Djikstra's Algo implementation 
-int Djikstra::solution_dkstra(int dest)
+int Djikstra::solution_dkstra(char dest)
 {
-    if(dest > n_ || dest < 0)
+    int idx_dest = char_to_index(dest); 
+
+    if(idx_dest > n_ || idx_dest < 0)
     {
         cout << "Destination out of bounds"; 
         return INFIN; 
@@ -34,27 +36,26 @@ int Djikstra::solution_dkstra(int dest)
 
     pq.push(make_tuple(0, 0)); 
 
-    while( !visited[dest] && !pq.empty() )
+    while( !visited[idx_dest] && !pq.empty() )
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop();
         idx = get<1>(tmp); 
+        int i = 0; 
 
-        if(visited[idx])
+        for(const auto& neighbour : adj_list_[idx].neighbours)
         {
-            continue; 
-        }  
-
-        //this loop is slowing things down since it's iterating over all elements not just ones that are neighbours 
-        for(int i = 0; i < n_; i++)
-        {
-            if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
+            if(visited[char_to_index(neighbour.first)])
             {
-                shortest_path[i] = shortest_path[idx] + adj_matrix_[idx][i]; 
-                pq.push(make_tuple(shortest_path[i], i)); 
+                continue; 
+            }
+
+            else if (shortest_path[i]>shortest_path[idx]+ neighbour.second) 
+            {
+                shortest_path[i]=shortest_path[idx]+ neighbour.second; 
             }
         }
-        
+
         visited[idx] = true; 
     }
 
@@ -65,3 +66,5 @@ int Djikstra::solution_dkstra(int dest)
 
     return INFIN; 
 }
+Djikstra::Djikstra(int num_vertices, int x, int y)
+    : graphList(num_vertices, x, y) {}

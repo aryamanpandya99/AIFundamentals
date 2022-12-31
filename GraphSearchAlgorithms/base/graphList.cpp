@@ -1,22 +1,35 @@
 /*
-    Aryaman Pandya 
-    graphList.cpp 
-    Definition of functions required to perform A*
-    search algorithm
-    As of now this just contains un-tweaked Djikstra 
-    along with some helper functions that will be 
-    necessary for the switch to A* 
+Aryaman Pandya 
+Base class for graph search implementations 
+Adjacency List implementation 
 */
 
 #include "graphList.hpp"
+#include "graphMatrix.hpp"
 #include <queue>
 #include <cmath>
 #include <tuple>
 
+graphList::graphList(int num_vertices, int x, int y)
+{
+    char a = 'A'; 
+    char vertex; 
+    Node tmp; 
+
+    for(int i = 0; i < num_vertices; i++)
+    {
+        vertex = a + i;  
+        tmp.name = vertex; 
+        tmp.x = x; 
+        tmp.y = y; 
+        adj_list_.push_back(tmp); 
+    }
+}
+
 void graphList::insert_edge(char src, char dest, int weight)
 {
-    int idx_dest = char_to_int(dest); 
-    int idx_src = char_to_int(src); 
+    int idx_dest = char_to_index(dest); 
+    int idx_src = char_to_index(src); 
 
     if(idx_dest > n_ || idx_dest < 0)
     {
@@ -33,7 +46,7 @@ void graphList::insert_edge(char src, char dest, int weight)
 
 }
 
-int graphList::char_to_int(char character)
+int graphList::char_to_index(char character)
 {
     return character - 'A'; 
 }

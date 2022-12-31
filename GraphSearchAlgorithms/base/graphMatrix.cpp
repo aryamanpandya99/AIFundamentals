@@ -1,21 +1,22 @@
 /*
 Aryaman Pandya 
 Base class for graph search implementations 
+Adjacency Matrix implementation
 */
 
 #include <iostream>
 #include <vector>
-#include "graph_solutions.hpp"
+#include "graphMatrix.hpp"
 
 using namespace std; 
 
-graph_solutions::graph_solutions(vector<vector<int>> adjMatrix)
+graphMatrix::graphMatrix(vector<vector<int>> adjMatrix)
 {
     adj_matrix_ = adjMatrix;
     n_ = adj_matrix_.size(); 
 }
 
-void graph_solutions::printMatrix(vector<vector<int>> matrix)
+void graphMatrix::printMatrix(vector<vector<int>> matrix)
 {
     int n = matrix.size(); 
     for(int i = 0; i < n; i++)

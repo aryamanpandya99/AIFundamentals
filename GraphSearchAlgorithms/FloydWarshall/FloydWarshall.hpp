@@ -8,13 +8,13 @@ an adjacency matrix
 
 #include <iostream>
 #include <vector>
-#include "../base/graph_solutions.hpp"
+#include "../base/graphMatrix.hpp"
 
 using namespace std; 
 
-class FloydWarshall : public graph_solutions {
+class FloydWarshall : public graphMatrix {
     
 public:
-    FloydWarshall(vector<vector<int>> adjMatrix) : graph_solutions(adjMatrix) {}
+    FloydWarshall(vector<vector<int>> adjMatrix) : graphMatrix(adjMatrix) {}
     vector<vector<int>> solution_fw(); 
 };

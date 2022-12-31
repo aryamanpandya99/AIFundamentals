@@ -9,27 +9,16 @@ estimate future costs
 #include <iostream>
 #include <vector>
 #include <map>
-#include "../base/graph_solutions.hpp"
+#include "../base/graphList.hpp"
 
 using namespace std; 
 
-struct Node {
-    char name; 
-    int x, y; 
-    map<char, int> neighbours; //first var stores neigbour name, second stores distance to neighbour
-}; 
 
-class AStar {
+class AStar : public graphList{
     
 public:
-    AStar(); 
+    AStar(int num_vertices, int x, int y) : graphList(num_vertices,x, y){} 
     int heuristic(Node& start, Node& goal); //most likely euclidean distances times weight 
     int solution_astar(char src, char dest); 
-    int char_to_int(char character); 
-    int num_vertices(); 
-    void insert_edge(char src, char dest, int weight); 
-
-private: 
-    std::vector<Node> adj_list_; 
-
+    
 };
