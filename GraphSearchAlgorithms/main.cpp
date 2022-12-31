@@ -33,13 +33,11 @@ void run_fw(vector<vector<int>> adj_matrix)
                                                                 "s\n"; 
 }
 
-void run_dkstra(vector<vector<int>> adj_matrix)
+void run_dkstra(int num_vertices)
 {
     cout << "******************Djikstra*********************\n"; 
-    Djikstra djikstra_soln(adj_matrix); 
+    Djikstra djikstra_soln(num_vertices, 0, 0); 
     std::cout<<"Input Adjacency Matrix: "<< std::endl; 
-
-    djikstra_soln.printMatrix(adj_matrix);
 
     cout << "Given destination from source: vertex 4\n";
 
@@ -77,6 +75,6 @@ int main()
 
     //Calls our search algorithms on our adjacency matrix
     run_fw(adj_matrix); 
-    run_dkstra(adj_matrix); 
+    run_dkstra(6); 
 
 }

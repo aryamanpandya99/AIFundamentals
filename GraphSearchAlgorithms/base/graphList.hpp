@@ -21,7 +21,7 @@ struct Node {
 class graphList {
     
 public:
-    graphList(int num_vertices, int x, int y); 
+    graphList(int num_vertices); 
     int char_to_index(char character); 
     void insert_edge(char src, char dest, int weight); 
 

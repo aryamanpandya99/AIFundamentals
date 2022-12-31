@@ -10,7 +10,7 @@ Adjacency List implementation
 #include <cmath>
 #include <tuple>
 
-graphList::graphList(int num_vertices, int x, int y)
+graphList::graphList(int num_vertices)
 {
     char a = 'A'; 
     char vertex; 
@@ -20,8 +20,6 @@ graphList::graphList(int num_vertices, int x, int y)
     {
         vertex = a + i;  
         tmp.name = vertex; 
-        tmp.x = x; 
-        tmp.y = y; 
         adj_list_.push_back(tmp); 
     }
 }

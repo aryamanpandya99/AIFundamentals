@@ -66,5 +66,3 @@ int Djikstra::solution_dkstra(char dest)
 
     return INFIN; 
 }
-Djikstra::Djikstra(int num_vertices, int x, int y)
-    : graphList(num_vertices, x, y) {}
