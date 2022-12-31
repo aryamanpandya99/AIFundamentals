@@ -52,27 +52,26 @@ int AStar::solution_astar(char src, char dest)
 
     pq.push(make_tuple(0, idx)); 
 
-    while( !visited[dest] && !pq.empty() )
+    while( !visited[idx_dest] && !pq.empty() )
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop();
-        idx = get<1>(tmp); //min
+        idx = get<1>(tmp); 
+        int i = 0; 
 
-        //this loop is slowing down runtime complexity, need to fix by maintaining neighbour list          
         for(const auto& neighbour : adj_list_[idx].neighbours)
         {
             if(visited[char_to_int(neighbour.first)])
             {
                 continue; 
             }
-            
-            if(!visited[i] && adj_matrix_[idx][i]!=0 && (shortest_path[i]>shortest_path[idx]+adj_matrix_[idx][i]))
+
+            else if (shortest_path[i]>shortest_path[idx]+ neighbour.second) 
             {
-                shortest_path[i] = shortest_path[idx] + adj_matrix_[idx][i]; 
-                pq.push(make_tuple(i, shortest_path[i])); 
+                shortest_path[i]=shortest_path[idx]+ neighbour.second; 
             }
         }
-        
+
         visited[idx] = true; 
     }
 
