@@ -1,11 +1,14 @@
 # Graph Search Algorithms
 This is repository contains C++ implementations for different commonly-used graph search algorithms. These algorithms have a ton of utility in AI applications such as language models and motion planning for mobile robots.
 
-## Compiling and running:
-Two of the algorithms were implemented using adjacency matrices for ease of use. It made more sense to model better search methods such as A* using adjacency lists, so they don't inherit from the same base class.
+## Directory Structure
 
-### Djikstra, Floyd-Warshall Algorithms
-The makefile in the repository root directory will compile the Floyd Warshall and Djikstra implementations and can be run using "./gs"
+AStar: Implementation of A* search 
 
-### A* Search
-To compile and run the A* search implementation, use the makefile in the AStar directory and run using "./as" **in progress**
+base: contains implementations of graphs using either an adjacency list or adjacency matrix 
+
+Djikstra: Implementation of Djikstra's algorithm 
+
+exec: contains main file, makefile and executables to be executed to run an example for each algorithm 
+
+FloydWarshall: Implementation of Dynamic Programming based search 

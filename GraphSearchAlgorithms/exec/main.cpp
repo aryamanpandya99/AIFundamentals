@@ -3,9 +3,10 @@
     search algorithm
 */
 
-#include "Djikstra/Djikstra.hpp"
-#include "FloydWarshall/FloydWarshall.hpp"
-#include "base/graphList.hpp"
+#include "../AStar/AStar.hpp"
+#include "../Djikstra/Djikstra.hpp"
+#include "../FloydWarshall/FloydWarshall.hpp"
+#include "../base/graphList.hpp"
 #include <iostream>
 #include <vector>
 #include <chrono>
@@ -31,7 +32,7 @@ void run_fw(vector<vector<int>> adj_matrix)
     
     apsp_matrix.printMatrix(optimized);
     std::cout << "Runtime for Dynamic Programming Algorithm: " << runtime.count() << 
-                                                                "s\n"; 
+                                                                "s\n \n"; 
 }
 
 void run_dkstra(int num_vertices)
@@ -48,6 +49,44 @@ void run_dkstra(int num_vertices)
 
     auto start = std::chrono::system_clock::now();
     int shortest_path = djikstra_soln.solution_dkstra('D'); 
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> runtime = end-start;
+
+    if(shortest_path!= INFIN)
+    {
+        std::cout << "Runtime for Djikstra's Search Algorithm: " << runtime.count() << 
+                                                                "s\n"; 
+        std::cout<<"Shortest path to destination: "<<shortest_path<< endl <<endl;
+    }
+
+    else {
+        std::cout<<"Traversal not possible\n"; 
+    }
+    
+}
+
+void run_astar(int num_vertices)
+{
+    cout << "******************A Star*********************\n"; 
+    AStar astar_soln(num_vertices); 
+    astar_soln.insert_edge('A', 'B', 2); 
+    astar_soln.insert_edge('A', 'E', 14);
+    astar_soln.insert_edge('B', 'C', 8);
+    astar_soln.insert_edge('B', 'D', 6);
+    astar_soln.insert_edge('C', 'E', 3);
+
+    astar_soln.add_coords('B', 0, 0); 
+    astar_soln.add_coords('A', -2, -3);
+    astar_soln.add_coords('C', 3, 4);
+    astar_soln.add_coords('D', 1, 5);
+    astar_soln.add_coords('E', 5, 1);
+
+
+    cout << "Source: B, Destination: D\n";
+
+    auto start = std::chrono::system_clock::now();
+    int shortest_path = astar_soln.solution_astar('B','D'); 
     auto end = std::chrono::system_clock::now();
 
     std::chrono::duration<double> runtime = end-start;
@@ -81,5 +120,5 @@ int main()
     //Calls our search algorithms on our adjacency matrix
     run_fw(adj_matrix); 
     run_dkstra(6); 
-
+    run_astar(5); 
 }

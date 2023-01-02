@@ -48,3 +48,17 @@ int graphList::char_to_index(char character)
 {
     return character - 'A'; 
 }
+
+bool graphList::add_coords(char vertex, int x, int y)
+{
+    int idx = char_to_index(vertex); 
+
+    if(idx > n_ || idx < 0)
+    {
+        return false; 
+    }
+
+    adj_list_[idx].x = x; 
+    adj_list_[idx].y = y;
+    return true; 
+}

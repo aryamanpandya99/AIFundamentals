@@ -43,11 +43,11 @@ int AStar::solution_astar(char src, char dest)
     int idx = idx_src; 
     int current_distance = 0; 
     
-    priority_queue<tuple<int, int>, std::vector<tuple<int, int>>, std::greater<tuple<int, int>>> pq; //tuple element 1 will be weight, element 2 will be vertex  
+    priority_queue<tuple<int, int>, std::vector<tuple<int, int>>, std::greater<tuple<int, int>>> pq; //tuple element 1 will be fScore, element 2 will be vertex  
 
     pq.push(make_tuple(0, idx)); 
 
-    while( !visited[idx_dest] && !pq.empty() )
+    while(!pq.empty() )
     {
         tuple<int,int> tmp = pq.top();  
         pq.pop();
@@ -56,6 +56,7 @@ int AStar::solution_astar(char src, char dest)
 
         for(const auto& neighbour : adj_list_[idx].neighbours)
         {
+            i = char_to_index(neighbour.first);
             if(visited[char_to_index(neighbour.first)])
             {
                 continue; 
@@ -64,6 +65,8 @@ int AStar::solution_astar(char src, char dest)
             else if (shortest_path[i]>shortest_path[idx]+ neighbour.second) 
             {
                 shortest_path[i]=shortest_path[idx]+ neighbour.second; 
+                future_cost[i] = heuristic(adj_list_[i], adj_list_[idx_dest]) + shortest_path[i];
+                pq.push(make_tuple(future_cost[i], char_to_index(neighbour.first))); 
             }
         }
 

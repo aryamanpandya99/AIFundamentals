@@ -24,6 +24,7 @@ public:
     graphList(int num_vertices); 
     int char_to_index(char character); 
     void insert_edge(char src, char dest, int weight); 
+    bool add_coords(char vertex, int x, int y); 
 
 protected: 
     std::vector<Node> adj_list_; 
