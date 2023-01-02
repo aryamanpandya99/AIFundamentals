@@ -34,7 +34,7 @@ int AStar::solution_astar(char src, char dest)
 
     vector<bool> visited(n_, false); 
     vector<int> shortest_path(n_,INFIN); 
-    vector<float> future_cost(n_, INFIN); 
+    vector<double> future_cost(n_, INFIN); 
     
 
     shortest_path[idx_src] = 0; 
@@ -45,7 +45,7 @@ int AStar::solution_astar(char src, char dest)
     
     priority_queue<tuple<int, int>, std::vector<tuple<int, int>>, std::greater<tuple<int, int>>> pq; //tuple element 1 will be fScore, element 2 will be vertex  
 
-    pq.push(make_tuple(0, idx)); 
+    pq.push(make_tuple(future_cost[idx_src], idx)); 
 
     while(!pq.empty() )
     {
@@ -53,6 +53,12 @@ int AStar::solution_astar(char src, char dest)
         pq.pop();
         idx = get<1>(tmp); 
         int i = 0; 
+
+        if(idx_dest == idx)
+        {
+            visited[idx_dest] = true; 
+            break; 
+        }
 
         for(const auto& neighbour : adj_list_[idx].neighbours)
         {
@@ -73,15 +79,15 @@ int AStar::solution_astar(char src, char dest)
         visited[idx] = true; 
     }
 
-    if(visited[dest])
+    if(visited[idx_dest])
     {
-        return shortest_path[dest]; 
+        return shortest_path[idx_dest]; 
     }
 
     return INFIN; 
 }
 
-int AStar::heuristic(Node& start, Node& goal)
-{
-    return sqrt((goal.x-start.x)^2 + (goal.y-start.y)^2);
+double AStar::heuristic(Node& start, Node& goal)
+{ 
+    return sqrt(pow(double (goal.x-start.x), 2.0) + pow(double (goal.y-start.y),2.0));
 }
