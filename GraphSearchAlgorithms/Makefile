@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS  = -g -Wall
 
 graph_solutions : graphList.o graphMatrix.o FloydWarshall.o Djikstra.o
-	g++ -o gs main.cpp graphMatrix.o FloydWarshall.o Djikstra.o
+	g++ -o gs main.cpp graphList.o graphMatrix.o FloydWarshall.o Djikstra.o
 
 graphList.o : base/graphList.cpp
 	g++ -c base/graphList.cpp

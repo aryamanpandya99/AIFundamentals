@@ -15,12 +15,13 @@ graphList::graphList(int num_vertices)
     char a = 'A'; 
     char vertex; 
     Node tmp; 
+    n_ = num_vertices; 
 
     for(int i = 0; i < num_vertices; i++)
     {
         vertex = a + i;  
         tmp.name = vertex; 
-        adj_list_.push_back(tmp); 
+        adj_list_.push_back(tmp);
     }
 }
 
@@ -34,13 +35,12 @@ void graphList::insert_edge(char src, char dest, int weight)
         std::cout << "Edge cannot be inserted because destination vertex does not exist in graph\n"; 
         return; 
     }
-    else if (idx_src > n_ || idx_src < 0) {
+    if (idx_src > n_ || idx_src < 0) {
         std::cout << "Edge cannot be inserted because source vertex does not exist in graph\n"; 
         return; 
     }
 
     adj_list_[idx_src].neighbours.insert(std::pair<char,int>(dest, weight));
-    n_++; 
 
 }
 

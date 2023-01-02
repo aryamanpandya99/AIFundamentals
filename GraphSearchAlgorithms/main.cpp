@@ -5,6 +5,7 @@
 
 #include "Djikstra/Djikstra.hpp"
 #include "FloydWarshall/FloydWarshall.hpp"
+#include "base/graphList.hpp"
 #include <iostream>
 #include <vector>
 #include <chrono>
@@ -36,13 +37,17 @@ void run_fw(vector<vector<int>> adj_matrix)
 void run_dkstra(int num_vertices)
 {
     cout << "******************Djikstra*********************\n"; 
-    Djikstra djikstra_soln(num_vertices, 0, 0); 
-    std::cout<<"Input Adjacency Matrix: "<< std::endl; 
+    Djikstra djikstra_soln(num_vertices); 
+    djikstra_soln.insert_edge('A', 'B', 2); 
+    djikstra_soln.insert_edge('A', 'E', 14);
+    djikstra_soln.insert_edge('B', 'C', 8);
+    djikstra_soln.insert_edge('B', 'D', 6);
+    djikstra_soln.insert_edge('C', 'E', 3);
 
     cout << "Given destination from source: vertex 4\n";
 
     auto start = std::chrono::system_clock::now();
-    int shortest_path = djikstra_soln.solution_dkstra(4); 
+    int shortest_path = djikstra_soln.solution_dkstra('D'); 
     auto end = std::chrono::system_clock::now();
 
     std::chrono::duration<double> runtime = end-start;
