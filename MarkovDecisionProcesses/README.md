@@ -1,4 +1,4 @@
-# Markov Decision Processes 
+# Markov Decision Processes (In-Progress) 
 
 Moving on from graph search algorithms which assume a deterministic view of the world to MDPs that help us model probabilistic results of state-action pairs. 
 
