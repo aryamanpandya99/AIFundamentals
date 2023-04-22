@@ -1,6 +1,4 @@
-Sure, here's the updated README in Markdown format:
-
-# Graph Search and Machine Learning in C++
+# AI Fundamentals
 
 This repository contains implementations of Graph Search algorithms and a linear regression model in C++11 and higher. The implementations were created while following CS221: AI Principles and Techniques from Stanford University on YouTube.
 
