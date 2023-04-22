@@ -1,10 +1,25 @@
-# AIFundamentals
-CS221: AI Principles and Techniques
+Sure, here's the updated README in Markdown format:
 
-Short projects as I refresh my basic AI techniques and principles. 
-As I transition from working on Computer Vision Projects (CS231n, repo ComputerVision) 
-to other types of deep learning problems (NLP, RL) during my self-driven AI specialization program, I believed it was a good idea to go back and visit some of the basics 
-such as backprop, dynamic programming, search algorithms and Markov Decision Processes to strengthen my foundation. 
+# Graph Search and Machine Learning in C++
 
-Another motivation for this course selaction was to switch back to compiler based languages and dependency based 
-file-structures to re-build my programming fundamentals while working on simpler concepts. So far I've been spending too much time in Jupyter Notebooks and while they are extremely powerful and convenient, they've led me to start to build some bad habits. 
+This repository contains implementations of Graph Search algorithms and a linear regression model in C++11 and higher. The implementations were created while following CS221: AI Principles and Techniques from Stanford University on YouTube.
+
+## Graph Search Algorithms
+The `GraphSearchAlgorithms` directory contains implementations of the following algorithms:
+
+- Floyd-Warshall Algorithm
+- Dijkstra's Algorithm
+- A*
+- RRT (Rapidly-Exploring Random Tree)
+
+## Machine Learning
+The `MachineLearningCPP` directory contains an implementation of linear regression using gradient descent.
+
+## Markov Decision Processes
+The `MarkovDecisionProcesses` directory contains code related to Markov Decision Processes.
+
+## Prerequisites
+To run the code in this repository, you will need a C++ compiler that supports C++11 or higher.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
